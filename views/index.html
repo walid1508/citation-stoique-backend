@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citation Stoïque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<h1>Citation Stoïque</h1>
+    <div id="app-container">
+        <!-- Quote Display Section -->
+        <div class="quote-container">
+            <h1 class="quote-text" id="quote-text">"Chargement de la citation..."</h1>
+            <p class="quote-author" id="quote-author">- Auteur inconnu</p>
+        </div>
+
+        <!-- Label for user interaction -->
+        <div class="label-container">
+            <p>Appuyez sur la touche gauche de la souris pour générer une nouvelle citation</p>
+        </div>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+        // Function to fetch and display a new quote
+        async function fetchRandomQuote() {
+            try {
+                const response = await fetch('/api/quote');
+                const data = await response.json();
+                document.getElementById('quote-text').textContent = `"${data.text}"`;
+                document.getElementById('quote-author').textContent = `- ${data.author}`;
+            } catch (error) {
+                console.error('Erreur lors de la récupération de la citation:', error);
+            }
+        }
+
+        // Detect click event to change the quote
+        window.addEventListener('click', function () {
+            fetchRandomQuote();
+        });
+
+        // Fetch a quote when the page loads
+        window.onload = fetchRandomQuote;
+    </script>
 </body>
 
 </html>
