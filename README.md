@@ -13,7 +13,7 @@ Le projet a été inspiré de [stoic-quotes.com](https://github.com/benhoneywill
 
 Voici le lien pour accéder à l'application : [https://citation-stoique.onrender.com/](https://citation-stoique.onrender.com/).
 
-**NB :** Le nom du répertoire est `quote-generator-backend` puisque je compte développer sous peu une application mobile portant le nom `quote-generator-app` pour afficher les citations sur des applications mobiles.
+**NB :** Le nom du répertoire est `quote-generator-backend` puisque je compte développer sous peu une application mobile portant le nom `quote-generator-app` pour afficher des citations aléatoire.
 
 Cette application expose une API publique que vous pouvez utiliser pour récupérer des citations aléatoires à intégrer à votre application.
 
