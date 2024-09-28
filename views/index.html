@@ -22,12 +22,11 @@
 
         <!-- Label for user interaction -->
         <div class="label-container">
-            <p>Appuyez sur la touche gauche de la souris pour générer une nouvelle citation</p>
+            <p id="interaction-label">Appuyez sur la touche gauche de la souris pour générer une nouvelle citation</p>
         </div>
     </div>
 
     <script>
-        let lastScrollTop = 0;
         // Function to fetch and display a new quote
         async function fetchRandomQuote() {
             try {
@@ -40,13 +39,20 @@
             }
         }
 
-        // Detect click event to change the quote
-        window.addEventListener('click', function () {
+        // On window load, change the label text based on device type
+        window.addEventListener('load', function() {
+            // Check if it's a mobile device based on screen width
+            if (window.innerWidth <= 768) {
+                document.getElementById('interaction-label').textContent = "Touchez pour changer de citation";
+            }
+
+            // Detect click or touch event to change the quote
+            window.addEventListener('click', fetchRandomQuote);
+            window.addEventListener('touchstart', fetchRandomQuote);
+
+            // Fetch a quote when the page loads
             fetchRandomQuote();
         });
-
-        // Fetch a quote when the page loads
-        window.onload = fetchRandomQuote;
     </script>
 </body>
 

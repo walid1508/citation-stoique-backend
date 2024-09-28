@@ -18,7 +18,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
 
 // quote route
-app.use('/api/quote', require('./routes/quoteRoutes'))
+app.use('/api', require('./routes/quoteRoutes'))
 
 // Handle 404
 app.all('*', (req, res) => {

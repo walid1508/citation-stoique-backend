@@ -3,6 +3,7 @@ const router = express.Router()
 const quoteController = require('../controllers/quoteController')
 
 
-router.get('/', quoteController.getRandomQuote)
+router.get('/quote', quoteController.getRandomQuote)
+router.get('/quotes', quoteController.getRandomQuoteList)
 
 module.exports = router;
