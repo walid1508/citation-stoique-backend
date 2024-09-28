@@ -1,4 +1,4 @@
-const Quote = require('../models/Quote');
+const Quote = require('../models/quote');
 
 // @desc Get random quote
 // @route GET /api/quote
