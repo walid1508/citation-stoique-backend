@@ -13,20 +13,19 @@ export const GET = async (req: Request) => {
 
     // Valider `num`
     if (Number.isNaN(num) || num <= 0 || num > 100) {
-      return new NextResponse(
-        JSON.stringify({
-          error: "`num` doit être un entier compris entre 1 et 100.",
-        }),
-        {
-          status: 422,
-        }
+      return NextResponse.json(
+        { error: "`num` doit être un entier compris entre 1 et 100." },
+        { status: 422 }
       );
     }
 
     // Récupérer toutes les citations et les mélanger
     const quotesCount = await Quote.countDocuments();
     if (quotesCount === 0) {
-      return new NextResponse("Aucune citation trouvée", { status: 404 });
+      return NextResponse.json(
+        { message: "Aucune citation trouvée" },
+        { status: 404 }
+      );
     }
 
     // Limiter la requête au nombre total de citations disponibles
@@ -38,10 +37,11 @@ export const GET = async (req: Request) => {
       { $project: { _id: 0, __v: 0 } }, // Exclure les champs `_id` et `__v`
     ]);
 
-    return new NextResponse(JSON.stringify(randomQuotes), { status: 200 });
+    return NextResponse.json(randomQuotes, { status: 200 });
   } catch (error: any) {
-    return new NextResponse(`Erreur : ${error.message}`, {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: `Erreur : ${error.message}` },
+      { status: 500 }
+    );
   }
 };

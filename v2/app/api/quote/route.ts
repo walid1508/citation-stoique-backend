@@ -10,14 +10,20 @@ export const GET = async () => {
     const randomQuote = await Quote.findOne()
       .skip(randomIndex)
       .select("-_id -__v");
+
     if (!randomQuote) {
       // Aucune citation trouvée
-      return new NextResponse("Aucune citation trouvée", { status: 404 });
+      return NextResponse.json(
+        { message: "Aucune citation trouvée" },
+        { status: 404 }
+      );
     }
-    return new NextResponse(JSON.stringify(randomQuote), { status: 200 });
+
+    return NextResponse.json(randomQuote, { status: 200 });
   } catch (error: any) {
-    return new NextResponse(`Erreur : ${error.message}`, {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: `Erreur : ${error.message}` },
+      { status: 500 }
+    );
   }
 };
