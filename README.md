@@ -18,9 +18,11 @@ Voici le lien pour accéder à l'application : [https://citation-stoique.onrende
 Cette application expose une API publique que vous pouvez utiliser pour récupérer des citations aléatoires à intégrer à votre application.
 
 ### Récupérer une citation aléatoire :
+
 [GET https://citation-stoique.onrender.com/api/quote]
 
 **Exemple de réponse JSON :**
+
 ```json
 {
   "text": "Ne cherche pas à changer les événements, mais change-toi toi-même pour être en accord avec eux.",
@@ -29,13 +31,15 @@ Cette application expose une API publique que vous pouvez utiliser pour récupé
 ```
 
 ### Récupérer une liste aléatoire de citations stoïques :
-[GET https://citation-stoique.onrender.com/api/quotes] 
+
+[GET https://citation-stoique.onrender.com/api/quotes]
 
 Vous pouvez passer optionnellement un paramètre num pour modifier le nombre de citations retournées. La valeur par défaut est 10, et vous pouvez récupérer jusqu'à 100 citations maximum.
 
 [GET https://citation-stoique.onrender.com/api/quotes?num=2]
 
 **Exemple de réponse JSON :**
+
 ```json
 [
   {
@@ -48,4 +52,3 @@ Vous pouvez passer optionnellement un paramètre num pour modifier le nombre de 
   }
 ]
 ```
-
