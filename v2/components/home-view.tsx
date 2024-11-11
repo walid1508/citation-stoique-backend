@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
 
-import { quoteContext } from "../contexts/quote";
+import { useQuoteContext } from "@/contexts/quote-context";
 import Blockquote from "./blockquote";
 import ClickIcon from "./click-icon";
 import ErrorMessage from "./error-message";
@@ -36,22 +35,21 @@ const Hint = styled.div`
 `;
 
 const HomeView = () => {
-  const { quote, error, loading, fetchNewQuote } =
-    React.useContext(quoteContext);
+  const { quote, loading, error, fetchQuote } = useQuoteContext();
 
   const buttonKeyDown = (event) => {
     if (event.keyCode === 32) {
       event.preventDefault();
     } else if (event.keyCode === 13) {
       event.preventDefault();
-      fetchNewQuote();
+      fetchQuote();
     }
   };
 
   const buttonKeyUp = (event) => {
     if (event.keyCode === 32) {
       event.preventDefault();
-      fetchNewQuote();
+      fetchQuote();
     }
   };
 
@@ -60,18 +58,18 @@ const HomeView = () => {
       tabIndex={0}
       role="button"
       aria-label="Get a new random quote"
-      onClick={fetchNewQuote}
+      onClick={fetchQuote}
       onKeyDown={buttonKeyDown}
       onKeyUp={buttonKeyUp}
     >
       {loading ? (
-        <p>Loading...</p>
+        <p>Chargement...</p>
       ) : quote ? (
         <Blockquote text={quote.text} author={quote.author} animate={loading} />
       ) : error ? (
         <ErrorMessage />
       ) : (
-        <p>No quote available.</p>
+        <p>Pas de citation disponible.</p>
       )}
       <Hint>
         <ClickIcon color="#ffffff" size={64} />
