@@ -21,9 +21,6 @@ export const GET = async () => {
 
     return NextResponse.json(randomQuote, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: `Erreur : ${error.message}` },
-      { status: 500 }
-    );
+    return NextResponse.json({ erreur: `${error.message}` }, { status: 500 });
   }
 };

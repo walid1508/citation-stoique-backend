@@ -14,7 +14,7 @@ export const GET = async (req: Request) => {
     // Valider `num`
     if (Number.isNaN(num) || num <= 0 || num > 100) {
       return NextResponse.json(
-        { error: "`num` doit être un entier compris entre 1 et 100." },
+        { erreur: "`num` doit être un entier compris entre 1 et 100." },
         { status: 422 }
       );
     }
@@ -39,9 +39,6 @@ export const GET = async (req: Request) => {
 
     return NextResponse.json(randomQuotes, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: `Erreur : ${error.message}` },
-      { status: 500 }
-    );
+    return NextResponse.json({ erreur: `${error.message}` }, { status: 500 });
   }
 };
